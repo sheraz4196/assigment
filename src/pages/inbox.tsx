@@ -1,7 +1,7 @@
 import Header from "@/components/inbox/header";
 import InboxHomepage from "@/components/inbox/inbox-homepage";
 
-export default async function Inbox() {
+export default function Inbox() {
   return (
     <main>
       <Header />
