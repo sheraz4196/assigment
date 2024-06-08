@@ -1,3 +1,9 @@
+import Header from "@/components/inbox/header";
+
 export default function Inbox() {
-  return <section></section>;
+  return (
+    <main>
+      <Header />
+    </main>
+  );
 }

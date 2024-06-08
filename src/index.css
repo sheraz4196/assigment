@@ -1,4 +1,8 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
+@tailwind components;
+@tailwind utilities;
+
+.header-shadow {
+  box-shadow: 0px 2px 5px 0px #171a1f17;
+  box-shadow: 0px 0px 2px 0px #171a1f1f;
+}
