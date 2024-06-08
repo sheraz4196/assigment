@@ -18,7 +18,7 @@ const loginFormSchema = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 characters long." }),
 });
-export default function LoginForm() {
+export default function RegisterForm() {
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -78,7 +78,7 @@ export default function LoginForm() {
           >
             Login
           </Button>
-          <FormsToggler formName="login" />
+          <FormsToggler formName="register" />
         </div>
       </form>
     </Form>

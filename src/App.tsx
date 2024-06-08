@@ -1,14 +1,12 @@
-import "./App.css";
-import LoginForm from "./components/forms/login-form";
-import Poster from "./components/gernal/poster";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Homepage from "./pages";
 
-function App() {
-  return (
-    <section className="flex h-screen max-h-screen w-screen">
-      <LoginForm />
-      <Poster />
-    </section>
-  );
-}
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+    </Routes>
+  </Router>
+);
 
 export default App;
