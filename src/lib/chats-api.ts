@@ -78,7 +78,7 @@ export async function getAllChats() {
     }, 4000);
   });
 }
-export async function messagesById(chat_id: number) {
+export async function getMessagesById(chat_id: number) {
   return new Promise((resolve) => {
     setTimeout(() => {
       const chat = MESSAGES.find((chat) => chat.chat_id === chat_id);
