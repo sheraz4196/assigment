@@ -75,7 +75,7 @@ export async function getAllChats() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(CHATS_FAKE_DATA);
-    });
+    }, 4000);
   });
 }
 export async function messagesById(chat_id: number) {
