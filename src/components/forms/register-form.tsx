@@ -12,18 +12,28 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import FormsToggler from "../general/forms-toggler";
-const loginFormSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters long." }),
-});
+const loginFormSchema = z
+  .object({
+    email: z.string().email({ message: "Please enter a valid email address" }),
+    name: z.string().min(1, { message: "Name is required" }),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters long." }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
 export default function RegisterForm() {
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: "",
+      name: "",
       password: "",
+      confirmPassword: "",
     },
   });
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
@@ -40,7 +50,7 @@ export default function RegisterForm() {
             <img src="/assets/logo.png" alt="" />
           </div>
           <h3 className="text-[#9095A1] font-bold text-[34px] leading-[48px] mb-9 text-center">
-            Log In
+            Sign Up
           </h3>
           <div className="flex flex-col gap-[13px] mb-[41px]">
             <FormField
@@ -58,6 +68,20 @@ export default function RegisterForm() {
               )}
             />
             <FormField
+              name="name"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <Label className="max-w-max text-xs leading-[20px] text-[#FF56A5]">
+                    Name
+                  </Label>
+                  <FormControl>
+                    <Input placeholder="John Doe" {...field} />
+                  </FormControl>
+                  <FormMessage className="max-w-max" />
+                </FormItem>
+              )}
+            />
+            <FormField
               name="password"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
@@ -65,7 +89,21 @@ export default function RegisterForm() {
                     Password
                   </Label>
                   <FormControl>
-                    <Input placeholder="example@mail.com" {...field} />
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage className="max-w-max" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <Label className="max-w-max text-xs leading-[20px] text-[#FF56A5]">
+                    Confirm Password
+                  </Label>
+                  <FormControl>
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage className="max-w-max" />
                 </FormItem>
@@ -76,7 +114,7 @@ export default function RegisterForm() {
             className="w-full bg-[#15ABFF] rounded-[4px] hover:bg-op mb-[45px]"
             type="submit"
           >
-            Login
+            Sign Up
           </Button>
           <FormsToggler formName="register" />
         </div>
