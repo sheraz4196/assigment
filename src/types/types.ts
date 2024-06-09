@@ -7,3 +7,8 @@ export type Message = {
   message: string;
   type: "incoming" | "outgoing";
 };
+
+export type MessagesType = {
+  chat_id: number;
+  messages: Message[];
+};

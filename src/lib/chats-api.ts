@@ -1,4 +1,4 @@
-import { Chat, Message } from "@/types/types";
+import { Chat, Message, MessagesType } from "@/types/types";
 
 const CHATS_FAKE_DATA: Chat[] = [
   { chat_name: "Conversation 1", chat_id: 1 },
@@ -6,7 +6,7 @@ const CHATS_FAKE_DATA: Chat[] = [
   { chat_name: "Conversation 3", chat_id: 3 },
 ];
 
-const MESSAGES: { chat_id: number; messages: Message[] }[] = [
+const MESSAGES: MessagesType[] = [
   {
     chat_id: 1,
     messages: [
