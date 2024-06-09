@@ -39,12 +39,13 @@ export default function RegisterForm() {
       confirmPassword: "",
     },
   });
+  const isLoading = form.formState.isSubmitting;
+  console.log(isLoading);
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     console.log(values);
-    setTimeout(() => {
-      toast.success("Registered Successfully.");
-      navigate("/inbox");
-    }, 3000);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    toast.success("Registered Successfully.");
+    navigate("/inbox");
   }
   return (
     <Form {...form}>
@@ -119,9 +120,10 @@ export default function RegisterForm() {
           </div>
           <Button
             className="w-full bg-[#15ABFF] rounded-[4px] hover:bg-op mb-[45px]"
+            disabled={isLoading}
             type="submit"
           >
-            Sign Up
+            {isLoading ? "Signing Up..." : "Sign Up"}
           </Button>
           <FormsToggler formName="register" />
         </div>

@@ -29,20 +29,20 @@ export default function LoginForm() {
       password: "",
     },
   });
+  const isLoading = form.formState.isSubmitting;
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    console.log(values);
-    setTimeout(() => {
-      if (
-        values.email === "dev@gmail.com" &&
-        values.password === "dev@gmail.com"
-      ) {
-        toast.success("Logged in successfully.");
-        navigate("/inbox");
-      } else {
-        toast.error("Invalid Username or password.");
-      }
-    }, 3000);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    if (
+      values.email === "dev@gmail.com" &&
+      values.password === "dev@gmail.com"
+    ) {
+      toast.success("Logged in successfully.");
+      navigate("/inbox");
+    } else {
+      toast.error("Invalid Username or password.");
+    }
   }
+
   return (
     <Form {...form}>
       <form
@@ -88,9 +88,10 @@ export default function LoginForm() {
           </div>
           <Button
             className="w-full bg-[#15ABFF] rounded-[4px] hover:bg-op mb-[45px]"
+            disabled={isLoading}
             type="submit"
           >
-            Login
+            {isLoading ? "Logging In..." : "Login"}
           </Button>
           <FormsToggler formName="login" />
         </div>
