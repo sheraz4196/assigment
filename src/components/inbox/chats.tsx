@@ -15,6 +15,7 @@ export default function Chats({
   hideWriter?: boolean;
 }) {
   const [chats, setChats] = useState<Chat[]>([]);
+  const [activeChat, setActiveChat] = useState<number>();
   const [messages, setMessages] = useState<Message[]>();
   const [chatName, setChatName] = useState<string>();
   const [chatLoading, setChatsLoading] = useState(false);
@@ -31,6 +32,7 @@ export default function Chats({
 
   const handleChatClick = async (chatId: number) => {
     setMessagesLoading(true);
+    setActiveChat(chatId);
     const chatMessages = await getMessagesById(chatId);
     setMessages(chatMessages);
     setMessagesLoading(false);
@@ -55,16 +57,21 @@ export default function Chats({
             <span className="text-white h-6 w-6 inline-block">+</span>
           </div>
 
-          <ol className="flex flex-col gap-1.5 lg:2.5 bg-[#F8F9FA] shadow-header rounded-md border flex-1">
+          <ol className="flex flex-col gap-1.5 lg:2.5 bg-white lg:bg-[#F8F9FA] shadow-header rounded-md border flex-1">
             {chatLoading && <Spinner />}
             {!chatLoading && chats.length ? (
               chats.map((chat) => (
                 <li
                   key={chat.chat_id}
-                  className="flex justify-between pr-2.5 pl-5 py-4 bg-[#6D31ED] rounded-md max-w-full"
+                  className={cn(
+                    "flex justify-between pr-2.5 pl-5 py-4 rounded-md max-w-full",
+                    chat.chat_id === activeChat
+                      ? "bg-[#6D31ED] text-white"
+                      : "text-black bg-[#DEE1E6] lg:bg-[#DDF3FF]"
+                  )}
                 >
                   <Button
-                    className="bg-[#6D31ED] hover:bg-[#6D31ED]"
+                    className="bg-transparent hover:bg-transparent text-current"
                     onClick={() => {
                       handleChatClick(chat.chat_id);
                       setChatName(chat.chat_name);

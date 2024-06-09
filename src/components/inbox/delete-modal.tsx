@@ -21,7 +21,7 @@ export default function DeleteModal({
   return (
     <Dialog>
       <DialogTrigger>
-        <Trash2 className="h-6 w-6 text-white border-0 focus:border-0" />
+        <Trash2 className="h-6 w-6 text-center border-0 focus:border-0" />
       </DialogTrigger>
       <DialogContent className="lg:w-[556px] bg-[#6D31ED] !rounded-[30px]">
         <DialogHeader className="flex justify-center items-center mb-9">
