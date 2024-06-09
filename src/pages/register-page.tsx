@@ -1,12 +1,12 @@
 import Poster from "@/components/general/poster";
-import LoginForm from "@/components/forms/login-form";
-function Homepage() {
+import RegisterForm from "@/components/forms/register-form";
+function RegisterPage() {
   return (
     <section className="flex h-screen max-h-screen w-screen">
-      <LoginForm />
+      <RegisterForm />
       <Poster />
     </section>
   );
 }
 
-export default Homepage;
+export default RegisterPage;
