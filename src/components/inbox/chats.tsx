@@ -55,8 +55,7 @@ export default function Chats({
 
           <ol className="flex flex-col gap-1.5 lg:2.5 bg-[#F8F9FA] shadow-header rounded-md border flex-1">
             {chatLoading && <Spinner />}
-            {!chatLoading &&
-              chats.length &&
+            {!chatLoading && chats.length ? (
               chats.map((chat) => (
                 <li
                   key={chat.chat_id}
@@ -77,7 +76,10 @@ export default function Chats({
                     chatId={chat.chat_id}
                   />
                 </li>
-              ))}
+              ))
+            ) : (
+              <p>No Conversations!!</p>
+            )}
           </ol>
         </div>
       </div>
