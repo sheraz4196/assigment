@@ -60,7 +60,7 @@ export default function Chats({
             <span className="text-white h-6 w-6 inline-block">+</span>
           </div>
 
-          <ol className="flex flex-col gap-1.5 lg:2.5 bg-white lg:bg-[#F8F9FA] shadow-header rounded-md border flex-1">
+          <ol className="flex flex-col gap-1.5 lg:2.5 bg-white lg:bg-[#F8F9FA] shadow-header rounded-md border flex-1 overflow-y-auto">
             {chatLoading && <Spinner />}
             {!chatLoading && chats.length ? (
               chats.map((chat) => (
