@@ -10,7 +10,7 @@ const App = () => (
       <Route path="/register" element={<Homepage />} />
       <Route path="/inbox" element={<Inbox />} />
     </Routes>
-    <Toaster />
+    <Toaster theme="system" richColors toastOptions={{}} />
   </Router>
 );
 
