@@ -30,7 +30,7 @@ export default function Chats() {
 
   return (
     <>
-      <div className="w-96 h-full">
+      <div className="w-96 h-full hidden lg:block">
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between pr-2.5 pl-5 py-4 bg-[#15ABFF] rounded-md mb-1.5 cursor-pointer">
             <Button className="bg-[#15ABFF] hover:bg-[#15ABFF]">

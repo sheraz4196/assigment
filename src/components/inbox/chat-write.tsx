@@ -2,7 +2,7 @@ import { Message } from "@/types/types";
 import MessagePill from "./message";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Send } from "lucide-react";
+import { Menu, Send } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Spinner from "../general/spinner";
 
@@ -37,13 +37,18 @@ export default function ChatWrite({
   return (
     <div className="flex-1 flex flex-col h-full gap-2.5">
       <section className="flex-1 shadow-md flex flex-col">
-        <header className="bg-[#15ABFF] w-full py-2 px-3 flex items-center gap-3 h-[58px] rounded-[4px]">
-          <div className="flex items-center">
-            <img src="/assets/person.png" alt="" />
+        <header className="bg-[#15ABFF] w-full py-2 px-3  flex items-center justify-between h-[58px] rounded-[4px]">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center">
+              <img src="/assets/person.png" alt="" />
+            </div>
+            <h4 className="text-white text-base">
+              {chatName || "Click on chats to show messages"}
+            </h4>
           </div>
-          <h4 className="text-white text-base">
-            {chatName || "Click on chats to show messages"}
-          </h4>
+          <Button className="bg-transparent block lg:hidden">
+            <Menu className="h-6 w-6" />
+          </Button>
         </header>
         <article
           ref={messageContainerRef}
