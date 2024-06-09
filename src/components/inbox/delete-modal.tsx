@@ -9,15 +9,23 @@ import {
 import { Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 
-export default function DeleteModal({ chatName }: { chatName: string }) {
+export default function DeleteModal({
+  chatName,
+  onYes,
+  chatId,
+}: {
+  chatName: string;
+  onYes: (chatId: number) => void;
+  chatId: number;
+}) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Trash2 className="h-6 w-6 text-white" />
+        <Trash2 className="h-6 w-6 text-white border-0 focus:border-0" />
       </DialogTrigger>
-      <DialogContent className="lg:w-[556px]">
+      <DialogContent className="lg:w-[556px] bg-[#6D31ED] rounded-[30px]">
         <DialogHeader className="flex justify-center items-center mb-9">
-          <DialogTitle className="text-[22px] text-center max-w-[308px]">
+          <DialogTitle className="text-[22px] text-center max-w-[308px] text-white">
             Are you absolutely sure you want to delete {chatName}
           </DialogTitle>
         </DialogHeader>
@@ -28,7 +36,10 @@ export default function DeleteModal({ chatName }: { chatName: string }) {
                 No
               </Button>
             </DialogClose>
-            <Button className="w-[116px] rounded-2xl bg-[#FF0000] hover:bg-[#FF0000]">
+            <Button
+              className="w-[116px] rounded-2xl bg-[#FF0000] hover:bg-[#FF0000]"
+              onClick={() => onYes(chatId)}
+            >
               Yes
             </Button>
           </div>

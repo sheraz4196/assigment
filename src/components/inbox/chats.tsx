@@ -35,7 +35,13 @@ export default function Chats({
     setMessages(chatMessages);
     setMessagesLoading(false);
   };
-
+  const handleDeleteChat = (chatId: number) => {
+    setChats((prevChats) =>
+      prevChats.filter((chat) => chat.chat_id !== chatId)
+    );
+    setMessages([]);
+    setChatName("");
+  };
   return (
     <>
       <div className={cn("w-96 h-full hidden lg:block", className)}>
@@ -65,7 +71,11 @@ export default function Chats({
                   >
                     {chat.chat_name}
                   </Button>
-                  <DeleteModal chatName={chat.chat_name} />
+                  <DeleteModal
+                    chatName={chat.chat_name}
+                    onYes={handleDeleteChat}
+                    chatId={chat.chat_id}
+                  />
                 </li>
               ))}
           </ol>
