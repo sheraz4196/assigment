@@ -4,8 +4,9 @@ import ChatWrite from "./chat-write";
 import { getAllChats, getMessagesById } from "@/lib/chats-api";
 import { Chat, Message } from "@/types/types";
 import Spinner from "../general/spinner";
+import { cn } from "@/lib/utils";
 
-export default function Chats() {
+export default function Chats({ className }: { className?: string }) {
   const [chats, setChats] = useState<Chat[]>([]);
   const [messages, setMessages] = useState<Message[]>();
   const [chatName, setChatName] = useState<string>();
@@ -30,7 +31,7 @@ export default function Chats() {
 
   return (
     <>
-      <div className="w-96 h-full hidden lg:block">
+      <div className={cn("w-96 h-full hidden lg:block", className)}>
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between pr-2.5 pl-5 py-4 bg-[#15ABFF] rounded-md mb-1.5 cursor-pointer">
             <Button className="bg-[#15ABFF] hover:bg-[#15ABFF]">

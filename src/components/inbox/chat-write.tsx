@@ -2,9 +2,10 @@ import { Message } from "@/types/types";
 import MessagePill from "./message";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Menu, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Spinner from "../general/spinner";
+import ChatsMobile from "./chats-mobile";
 
 export default function ChatWrite({
   messages,
@@ -46,9 +47,7 @@ export default function ChatWrite({
               {chatName || "Click on chats to show messages"}
             </h4>
           </div>
-          <Button className="bg-transparent block lg:hidden">
-            <Menu className="h-6 w-6" />
-          </Button>
+          <ChatsMobile />
         </header>
         <article
           ref={messageContainerRef}
