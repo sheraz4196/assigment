@@ -6,7 +6,13 @@ import { Chat, Message } from "@/types/types";
 import Spinner from "../general/spinner";
 import { cn } from "@/lib/utils";
 
-export default function Chats({ className }: { className?: string }) {
+export default function Chats({
+  className,
+  hideWriter = false,
+}: {
+  className?: string;
+  hideWriter?: boolean;
+}) {
   const [chats, setChats] = useState<Chat[]>([]);
   const [messages, setMessages] = useState<Message[]>();
   const [chatName, setChatName] = useState<string>();
@@ -63,12 +69,14 @@ export default function Chats({ className }: { className?: string }) {
           </ol>
         </div>
       </div>
-      <ChatWrite
-        messages={messages as Message[]}
-        chatName={chatName as string}
-        setMessages={setMessages}
-        loading={messagesLoading}
-      />
+      {!hideWriter && (
+        <ChatWrite
+          messages={messages as Message[]}
+          chatName={chatName as string}
+          setMessages={setMessages}
+          loading={messagesLoading}
+        />
+      )}
     </>
   );
 }
