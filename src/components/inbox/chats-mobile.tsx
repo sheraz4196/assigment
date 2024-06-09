@@ -12,7 +12,7 @@ export default function ChatsMobile() {
         </Button>
       </DrawerTrigger>
       <DrawerContent className="absolute -top-24 h-screen left-0 max-w-max">
-        <Chats className="!block" hideWriter />
+        <Chats className="!block -mt-6" hideWriter />
       </DrawerContent>
     </Drawer>
   );

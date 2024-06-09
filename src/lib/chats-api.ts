@@ -41,7 +41,7 @@ export async function getAllChats(): Promise<Chat[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(CHATS_FAKE_DATA);
-    }, 4000);
+    }, 0);
   });
 }
 

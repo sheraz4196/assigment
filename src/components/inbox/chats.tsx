@@ -5,6 +5,7 @@ import { getAllChats, getMessagesById } from "@/lib/chats-api";
 import { Chat, Message } from "@/types/types";
 import Spinner from "../general/spinner";
 import { cn } from "@/lib/utils";
+import { Trash } from "lucide-react";
 
 export default function Chats({
   className,
@@ -63,6 +64,9 @@ export default function Chats({
                     }}
                   >
                     {chat.chat_name}
+                  </Button>
+                  <Button className="bg-transparent hover:bg-transparent">
+                    <Trash />
                   </Button>
                 </li>
               ))}
