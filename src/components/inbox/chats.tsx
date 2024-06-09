@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import ChatWrite from "./chat-write";
 import { getAllChats, getMessagesById } from "@/lib/chats-api";
 import { Chat, Message } from "@/types/types";
+import Spinner from "../general/spinner";
 
 export default function Chats() {
   const [chats, setChats] = useState<Chat[]>([]);
@@ -39,7 +40,7 @@ export default function Chats() {
           </div>
 
           <ol className="flex flex-col gap-1.5 lg:2.5 bg-[#F8F9FA] shadow-header rounded-md border flex-1">
-            {chatLoading && <li>Loading...</li>}
+            {chatLoading && <Spinner />}
             {!chatLoading &&
               chats.length &&
               chats.map((chat) => (

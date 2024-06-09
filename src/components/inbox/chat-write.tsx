@@ -4,6 +4,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Send } from "lucide-react";
 import { useState } from "react";
+import Spinner from "../general/spinner";
 
 export default function ChatWrite({
   messages,
@@ -30,18 +31,22 @@ export default function ChatWrite({
             </h4>
           </header>
           <article className="pt-9 pl-3 pr-4 w-full overflow-y-auto flex-1">
-            <time className="inline-block text-center w-full pb-9">
-              Jan 27, 12:53 PM
-            </time>
-            <ol className="flex flex-col gap-5">
-              {loading && <li>Loading....</li>}
+            <ol className="flex flex-col gap-5 h-full">
+              {loading && <Spinner />}
+              {!loading && messages?.length && (
+                <time className="inline-block text-center w-full pb-9">
+                  Jan 27, 12:53 PM
+                </time>
+              )}
               {!loading &&
                 messages?.map((message, index) => (
-                  <MessagePill
-                    key={index}
-                    message={message.message}
-                    type={message.type}
-                  />
+                  <>
+                    <MessagePill
+                      key={index}
+                      message={message.message}
+                      type={message.type}
+                    />
+                  </>
                 ))}
             </ol>
           </article>
