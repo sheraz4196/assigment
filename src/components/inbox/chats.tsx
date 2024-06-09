@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import ChatWrite from "./chat-write";
 import { getAllChats, getMessagesById } from "@/lib/chats-api";
+import { Chat, Message } from "@/types/types";
 
 export default function Chats() {
-  const [chats, setChats] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [chats, setChats] = useState<Chat[]>([]);
+  const [messages, setMessages] = useState<Message[]>();
 
   useEffect(() => {
     async function fetchChats() {
       const chatData = await getAllChats();
-      setChats(chatData as []);
+      setChats(chatData);
     }
     fetchChats();
   }, []);
 
-  const handleChatClick = async (chatId) => {
+  const handleChatClick = async (chatId: number) => {
     const chatMessages = await getMessagesById(chatId);
     setMessages(chatMessages);
   };
