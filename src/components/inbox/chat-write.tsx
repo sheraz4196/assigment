@@ -55,10 +55,12 @@ export default function ChatWrite({
         >
           <ol className="flex flex-col gap-5 h-full">
             {loading && <Spinner />}
-            {!loading && messages?.length && (
+            {!loading && messages?.length ? (
               <time className="inline-block text-center w-full pb-9">
                 Jan 27, 12:53 PM
               </time>
+            ) : (
+              <p></p>
             )}
             {!loading &&
               messages?.map((message, index) => (
