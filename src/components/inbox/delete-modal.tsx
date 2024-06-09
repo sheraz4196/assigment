@@ -32,12 +32,12 @@ export default function DeleteModal({
         <div className="flex items-center justify-center">
           <div className="flex items-center gap-[150px]">
             <DialogClose>
-              <Button className="bg-[#DDF3FF] hover:bg-[#DDF3FF] text-black w-[116px] rounded-2xl">
+              <Button className="bg-[#DDF3FF] hover:bg-[#DDF3FF] text-black w-16 sm:w-[116px] rounded-2xl">
                 No
               </Button>
             </DialogClose>
             <Button
-              className="w-[116px] rounded-2xl bg-[#FF0000] hover:bg-[#FF0000]"
+              className="w-16 sm:w-[116px] rounded-2xl bg-[#FF0000] hover:bg-[#FF0000]"
               onClick={() => onYes(chatId)}
             >
               Yes

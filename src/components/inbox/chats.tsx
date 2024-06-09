@@ -44,7 +44,9 @@ export default function Chats({
   };
   return (
     <>
-      <div className={cn("w-96 h-full hidden lg:block", className)}>
+      <div
+        className={cn("w-[303px] lg:w-96 h-full hidden lg:block", className)}
+      >
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between pr-2.5 pl-5 py-4 bg-[#15ABFF] rounded-md mb-1.5 cursor-pointer">
             <Button className="bg-[#15ABFF] hover:bg-[#15ABFF]">
@@ -59,7 +61,7 @@ export default function Chats({
               chats.map((chat) => (
                 <li
                   key={chat.chat_id}
-                  className="flex justify-between pr-2.5 pl-5 py-4 bg-[#6D31ED] rounded-md"
+                  className="flex justify-between pr-2.5 pl-5 py-4 bg-[#6D31ED] rounded-md max-w-full"
                 >
                   <Button
                     className="bg-[#6D31ED] hover:bg-[#6D31ED]"
