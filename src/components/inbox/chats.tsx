@@ -55,6 +55,7 @@ export default function Chats() {
       <ChatWrite
         messages={messages as Message[]}
         chatName={chatName as string}
+        setMessages={setMessages}
       />
     </>
   );
