@@ -41,7 +41,7 @@ export async function getAllChats(): Promise<Chat[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(CHATS_FAKE_DATA);
-    }, 0);
+    }, 4000);
   });
 }
 
@@ -50,6 +50,6 @@ export async function getMessagesById(chat_id: number): Promise<Message[]> {
     setTimeout(() => {
       const chat = MESSAGES.find((chat) => chat.chat_id === chat_id);
       resolve(chat ? chat.messages : []);
-    }, 0);
+    }, 4000);
   });
 }

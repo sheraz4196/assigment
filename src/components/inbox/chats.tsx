@@ -8,17 +8,23 @@ export default function Chats() {
   const [chats, setChats] = useState<Chat[]>([]);
   const [messages, setMessages] = useState<Message[]>();
   const [chatName, setChatName] = useState<string>();
+  const [chatLoading, setChatsLoading] = useState(false);
+  const [messagesLoading, setMessagesLoading] = useState(false);
   useEffect(() => {
     async function fetchChats() {
+      setChatsLoading(true);
       const chatData = await getAllChats();
       setChats(chatData);
+      setChatsLoading(false);
     }
     fetchChats();
   }, []);
 
   const handleChatClick = async (chatId: number) => {
+    setMessagesLoading(true);
     const chatMessages = await getMessagesById(chatId);
     setMessages(chatMessages);
+    setMessagesLoading(false);
   };
 
   return (
@@ -31,8 +37,11 @@ export default function Chats() {
             </Button>
             <span className="text-white h-6 w-6 inline-block">+</span>
           </div>
+
           <ol className="flex flex-col gap-1.5 lg:2.5 bg-[#F8F9FA] shadow-header rounded-md border flex-1">
-            {chats?.length &&
+            {chatLoading && <li>Loading...</li>}
+            {!chatLoading &&
+              chats.length &&
               chats.map((chat) => (
                 <li
                   key={chat.chat_id}
@@ -56,6 +65,7 @@ export default function Chats() {
         messages={messages as Message[]}
         chatName={chatName as string}
         setMessages={setMessages}
+        loading={messagesLoading}
       />
     </>
   );
