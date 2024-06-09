@@ -12,6 +12,8 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import FormsToggler from "../general/forms-toggler";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 const loginFormSchema = z
   .object({
     email: z.string().email({ message: "Please enter a valid email address" }),
@@ -27,6 +29,7 @@ const loginFormSchema = z
   });
 
 export default function RegisterForm() {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -38,6 +41,10 @@ export default function RegisterForm() {
   });
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     console.log(values);
+    setTimeout(() => {
+      toast.success("Registered Successfully.");
+      navigate("/inbox");
+    }, 3000);
   }
   return (
     <Form {...form}>

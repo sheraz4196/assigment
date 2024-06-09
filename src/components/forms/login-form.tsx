@@ -12,6 +12,8 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import FormsToggler from "../general/forms-toggler";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
   password: z
@@ -19,6 +21,7 @@ const loginFormSchema = z.object({
     .min(8, { message: "Password must be at least 8 characters long." }),
 });
 export default function LoginForm() {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -28,6 +31,17 @@ export default function LoginForm() {
   });
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     console.log(values);
+    setTimeout(() => {
+      if (
+        values.email === "dev@gmail.com" &&
+        values.password === "dev@gmail.com"
+      ) {
+        toast.success("Logged in successfully.");
+        navigate("/inbox");
+      } else {
+        toast.error("Invalid Username or password.");
+      }
+    }, 3000);
   }
   return (
     <Form {...form}>
