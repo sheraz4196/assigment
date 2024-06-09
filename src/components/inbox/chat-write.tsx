@@ -1,4 +1,3 @@
-import { Message } from "@/types/types";
 import MessagePill from "./message";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -6,21 +5,18 @@ import { Send } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Spinner from "../general/spinner";
 import ChatsMobile from "./chats-mobile";
+import useMessagesStore from "@/stores/useMessagesStore";
 
 export default function ChatWrite({
-  messages,
-  setMessages,
   chatName,
   loading,
 }: {
-  messages: Message[];
-  setMessages: (values: Message[]) => void;
   chatName: string;
   loading: boolean;
 }) {
   const [newMessage, setNewMessage] = useState("");
   const messageContainerRef = useRef<HTMLDivElement>(null);
-
+  const { messages, setMessages } = useMessagesStore();
   useEffect(() => {
     // Scroll to the bottom of the message container when messages change
     if (messageContainerRef.current) {

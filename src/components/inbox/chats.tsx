@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import ChatWrite from "./chat-write";
 import { getAllChats, getMessagesById } from "@/lib/chats-api";
-import { Chat, Message } from "@/types/types";
+import { Chat } from "@/types/types";
 import Spinner from "../general/spinner";
 import { cn } from "@/lib/utils";
 import DeleteModal from "./delete-modal";
+import useMessagesStore from "@/stores/useMessagesStore";
 
 export default function Chats({
   className,
@@ -16,10 +17,10 @@ export default function Chats({
 }) {
   const [chats, setChats] = useState<Chat[]>([]);
   const [activeChat, setActiveChat] = useState<number>();
-  const [messages, setMessages] = useState<Message[]>();
   const [chatName, setChatName] = useState<string>();
   const [chatLoading, setChatsLoading] = useState(false);
   const [messagesLoading, setMessagesLoading] = useState(false);
+  const { setMessages } = useMessagesStore();
   useEffect(() => {
     async function fetchChats() {
       setChatsLoading(true);
@@ -37,6 +38,7 @@ export default function Chats({
     setMessages(chatMessages);
     setMessagesLoading(false);
   };
+
   const handleDeleteChat = (chatId: number) => {
     setChats((prevChats) =>
       prevChats.filter((chat) => chat.chat_id !== chatId)
@@ -44,6 +46,7 @@ export default function Chats({
     setMessages([]);
     setChatName("");
   };
+
   return (
     <>
       <div
@@ -81,7 +84,7 @@ export default function Chats({
                   </Button>
                   <DeleteModal
                     chatName={chat.chat_name}
-                    onYes={handleDeleteChat}
+                    onYes={() => handleDeleteChat(chat.chat_id)}
                     chatId={chat.chat_id}
                   />
                 </li>
@@ -93,12 +96,7 @@ export default function Chats({
         </div>
       </div>
       {!hideWriter && (
-        <ChatWrite
-          messages={messages as Message[]}
-          chatName={chatName as string}
-          setMessages={setMessages}
-          loading={messagesLoading}
-        />
+        <ChatWrite chatName={chatName as string} loading={messagesLoading} />
       )}
     </>
   );
