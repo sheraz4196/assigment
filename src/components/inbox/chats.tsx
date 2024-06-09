@@ -7,7 +7,7 @@ import { Chat, Message } from "@/types/types";
 export default function Chats() {
   const [chats, setChats] = useState<Chat[]>([]);
   const [messages, setMessages] = useState<Message[]>();
-
+  const [chatName, setChatName] = useState<string>();
   useEffect(() => {
     async function fetchChats() {
       const chatData = await getAllChats();
@@ -40,7 +40,10 @@ export default function Chats() {
                 >
                   <Button
                     className="bg-[#6D31ED] hover:bg-[#6D31ED]"
-                    onClick={() => handleChatClick(chat.chat_id)}
+                    onClick={() => {
+                      handleChatClick(chat.chat_id);
+                      setChatName(chat.chat_name);
+                    }}
                   >
                     {chat.chat_name}
                   </Button>
@@ -49,7 +52,10 @@ export default function Chats() {
           </ol>
         </div>
       </div>
-      <ChatWrite messages={messages} />
+      <ChatWrite
+        messages={messages as Message[]}
+        chatName={chatName as string}
+      />
     </>
   );
 }
